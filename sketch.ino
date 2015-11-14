@@ -308,6 +308,12 @@ void setup()
 
 void loop() 
 {
+    if(wtick == 0){
+        if (!client.isConnected()){
+            client.connect("sparkclient"); // connect to the MQTT server   
+            client.subscribe(MQTT_POWER_TOPIC);
+        }
+    }
     if(wtick == 4000){ //Fetch the weather every 4000 ticks.
         getWeather();
         wtick = 0;
